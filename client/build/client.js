@@ -363,9 +363,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/actions */ "./src/actions/actions.js");
-/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
-/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
-/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -394,7 +393,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+var history;
 
+if (typeof document !== 'undefined') {
+  var createBrowserHistory = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js").createBrowserHistory;
+
+  history = createBrowserHistory();
+}
 
 var WeatherWidget = /*#__PURE__*/function (_Component) {
   _inherits(WeatherWidget, _Component);
@@ -413,7 +418,6 @@ var WeatherWidget = /*#__PURE__*/function (_Component) {
       var city = event.target.city.value;
       var dispatch = _this.props.dispatch;
       dispatch(Object(_actions_actions__WEBPACK_IMPORTED_MODULE_2__["fetchWeatherRequest"])(city));
-      var history = Object(history__WEBPACK_IMPORTED_MODULE_3__["createBrowserHistory"])();
       history.push('/?city=' + city);
     });
 
@@ -431,7 +435,7 @@ var WeatherWidget = /*#__PURE__*/function (_Component) {
   _createClass(WeatherWidget, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var query = query_string__WEBPACK_IMPORTED_MODULE_4__["parse"](location.search);
+      var query = query_string__WEBPACK_IMPORTED_MODULE_3__["parse"](location.search);
       var city = query.city;
       var dispatch = this.props.dispatch;
       dispatch(Object(_actions_actions__WEBPACK_IMPORTED_MODULE_2__["fetchWeatherRequest"])(city ? city : 'Copenhagen'));
