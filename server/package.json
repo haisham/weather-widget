@@ -1,0 +1,16 @@
+{
+  "name": "weather-app-server",
+  "version": "1.0.0",
+  "scripts": {
+    "server": "cd app && node server.js",
+    "test": "cd app && mocha --recursive --exit"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mocha": "^8.2.1",
+    "node-fetch": "^2.6.1",
+    "supertest": "^6.1.3"
+  }
+}

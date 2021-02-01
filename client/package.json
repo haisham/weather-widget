@@ -1,0 +1,44 @@
+{
+  "name": "weather-app-client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "clear": "rimraf ./build",
+    "start": "npm run clear && webpack && node ./build/server.js",
+    "compile": "npm run clear && webpack"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "axios": "^0.21.1",
+    "babel-jest": "^26.6.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "express": "^4.17.1",
+    "isomorphic-fetch": "^3.0.0",
+    "jest": "^26.6.3",
+    "prop-types": "^15.7.2",
+    "query-string": "^6.13.8",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-router-redux": "^4.0.8",
+    "react-test-renderer": "^17.0.1",
+    "redux": "^4.0.5",
+    "redux-mock-store": "^1.5.4",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
