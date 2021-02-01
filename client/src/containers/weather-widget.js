@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { fetchWeatherRequest } from '../actions/actions';
 import { createBrowserHistory } from 'history';
 import * as qs from 'query-string';
-
-export const history = createBrowserHistory();
+ 
 
 class WeatherWidget extends Component {
 
@@ -26,7 +25,7 @@ class WeatherWidget extends Component {
 		var city = event.target.city.value;
 		const { dispatch } = this.props;
 		dispatch(fetchWeatherRequest(city));
-
+		const history = createBrowserHistory();
 		history.push('/?city=' + city);
 	}
 
