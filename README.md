@@ -1,5 +1,5 @@
 # Weather widget using React and ExpressJS
-> A simple client and server app, client connects with server via API, server calls OpenWeatherMap API to fetch weather info. Client is rendered server side in order to facilitate search engine visibility and avoid javascript issues on client side.
+> A simple client and server app, client connects with server via API, server calls OpenWeatherMap API to fetch weather info. Client is rendered server side in order to facilitate search engine visibility and to avoid javascript issues on client side.
 
 ## Screenshots
 ![screenshot1](https://sweetmatchsnaps.s3.amazonaws.com/screenshot1.png)
