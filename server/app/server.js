@@ -5,7 +5,7 @@ const cors = require('cors');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({origin: 'http://localhost:3000'}));
+app.use(cors({origin: '*'}));
 // Import Routes directory
 require('./routes')(app);
 

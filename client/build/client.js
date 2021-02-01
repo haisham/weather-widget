@@ -155,77 +155,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/actions/actions.js":
-/*!********************************!*\
-  !*** ./src/actions/actions.js ***!
-  \********************************/
-/*! exports provided: weatherRequest, weatherSuccess, requestWeatherFailed, fetchWeatherRequest */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "weatherRequest", function() { return weatherRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "weatherSuccess", function() { return weatherSuccess; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestWeatherFailed", function() { return requestWeatherFailed; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchWeatherRequest", function() { return fetchWeatherRequest; });
-/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! isomorphic-fetch */ "./node_modules/isomorphic-fetch/fetch-npm-browserify.js");
-/* harmony import */ var isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _constants_settings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/settings */ "./src/constants/settings.js");
-/* harmony import */ var _constants_actionTypes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants/actionTypes */ "./src/constants/actionTypes.js");
-
-
-
-function weatherRequest() {
-  return {
-    type: _constants_actionTypes__WEBPACK_IMPORTED_MODULE_2__["FETCH_WEATHER_REQUEST"]
-  };
-}
-function weatherSuccess(json) {
-  return {
-    type: _constants_actionTypes__WEBPACK_IMPORTED_MODULE_2__["FETCH_WEATHER_SUCCESS"],
-    payload: {
-      json: json,
-      receivedAt: Date.now()
-    }
-  };
-}
-function requestWeatherFailed(error) {
-  return {
-    type: _constants_actionTypes__WEBPACK_IMPORTED_MODULE_2__["FETCH_WEATHER_FAILED"],
-    error: error
-  };
-}
-function fetchWeatherRequest(city) {
-  var url = _constants_settings__WEBPACK_IMPORTED_MODULE_1__["API_URL"];
-  return function (dispatch) {
-    dispatch(weatherRequest());
-    return isomorphic_fetch__WEBPACK_IMPORTED_MODULE_0___default()(url, {
-      method: 'POST',
-      headers: {
-        'Accept': '*/*',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        'city': city,
-        'units': 'metric'
-      })
-    }).then(function (response) {
-      return response.json();
-    }).then(function (json) {
-      if (json.data.cod === "200") {
-        dispatch(weatherSuccess(json));
-      } else {
-        dispatch(requestWeatherFailed(json.data.message));
-      }
-    })["catch"](function (error) {
-      console.log(error);
-      dispatch(requestWeatherFailed(error.toString()));
-    });
-  };
-}
-
-/***/ }),
-
 /***/ "./src/client.js":
 /*!***********************!*\
   !*** ./src/client.js ***!
@@ -268,6 +197,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _containers_weather_widget__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../containers/weather-widget */ "./src/containers/weather-widget.js");
+/* harmony import */ var _containers_weather_widget__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_containers_weather_widget__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -307,7 +237,7 @@ var App = /*#__PURE__*/function (_Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_weather_widget__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_weather_widget__WEBPACK_IMPORTED_MODULE_1___default.a, null));
     }
   }]);
 
@@ -336,177 +266,14 @@ var FETCH_WEATHER_FAILED = 'FETCH_WEATHER_FAILED';
 
 /***/ }),
 
-/***/ "./src/constants/settings.js":
-/*!***********************************!*\
-  !*** ./src/constants/settings.js ***!
-  \***********************************/
-/*! exports provided: API_URL */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API_URL", function() { return API_URL; });
-var API_URL = 'http://localhost:5000/weather';
-
-/***/ }),
-
 /***/ "./src/containers/weather-widget.js":
 /*!******************************************!*\
   !*** ./src/containers/weather-widget.js ***!
   \******************************************/
-/*! exports provided: history, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "history", function() { return history; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/actions */ "./src/actions/actions.js");
-/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
-/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
-/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_4__);
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-var history = Object(history__WEBPACK_IMPORTED_MODULE_3__["createBrowserHistory"])();
-
-var WeatherWidget = /*#__PURE__*/function (_Component) {
-  _inherits(WeatherWidget, _Component);
-
-  var _super = _createSuper(WeatherWidget);
-
-  function WeatherWidget(props) {
-    var _this;
-
-    _classCallCheck(this, WeatherWidget);
-
-    _this = _super.call(this, props);
-
-    _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (event) {
-      event.preventDefault();
-      var city = event.target.city.value;
-      var dispatch = _this.props.dispatch;
-      dispatch(Object(_actions_actions__WEBPACK_IMPORTED_MODULE_2__["fetchWeatherRequest"])(city));
-      history.push('/?city=' + city);
-    });
-
-    _this.state = {
-      error: '',
-      city: '',
-      temp: '',
-      humidity: '',
-      windSpeed: '',
-      windDirection: ''
-    };
-    return _this;
-  }
-
-  _createClass(WeatherWidget, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var query = query_string__WEBPACK_IMPORTED_MODULE_4__["parse"](location.search);
-      var city = query.city;
-      var dispatch = this.props.dispatch;
-      dispatch(Object(_actions_actions__WEBPACK_IMPORTED_MODULE_2__["fetchWeatherRequest"])(city ? city : 'Copenhagen'));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "widget",
-        style: {
-          margin: '10px',
-          width: '300px'
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "panel panel-info"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "panel-heading"
-      }, "Weather in ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, this.state.city)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "list-group"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "list-group-item"
-      }, "Temperature: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, this.state.temp, "\xB0C")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "list-group-item"
-      }, "Humidity: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, this.state.humidity)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "list-group-item"
-      }, "Wind: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, this.state.windSpeed, " m/s ", this.state.windDirection)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "list-group-item"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
-        className: "form-inline"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        className: "form-control",
-        name: "city",
-        id: "city",
-        placeholder: "City"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        className: "btn btn-default",
-        style: {
-          marginLeft: '4px'
-        }
-      }, "Search"))))), this.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "alert alert-danger"
-      }, this.state.error)));
-    }
-  }], [{
-    key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(props) {
-      var weatherInfo = props.weather.weather;
-      return {
-        error: weatherInfo.error,
-        city: weatherInfo.cityName,
-        temp: weatherInfo.temp,
-        humidity: weatherInfo.humidity,
-        windSpeed: weatherInfo.windSpeed,
-        windDirection: weatherInfo.windDirection
-      };
-    }
-  }]);
-
-  return WeatherWidget;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-function mapStateToProps(state) {
-  return {
-    weather: state.weather,
-    city: state.city
-  };
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(WeatherWidget));
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/haishamsaeed/Documents/weather_app/client/src/containers/weather-widget.js: 'import' and 'export' may only appear at the top level (8:4)\n\n\u001b[0m \u001b[90m  6 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  7 | \u001b[39m\u001b[36mif\u001b[39m (\u001b[36mtypeof\u001b[39m(window) \u001b[33m!==\u001b[39m \u001b[32m'undefined'\u001b[39m){\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  8 | \u001b[39m    \u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m history \u001b[33m=\u001b[39m createBrowserHistory()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  9 | \u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m\u001b[36melse\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 11 | \u001b[39m    \u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m history \u001b[33m=\u001b[39m createMemoryHistory()\u001b[33m;\u001b[39m \u001b[90m//This kind of history is needed for server-side rendering.\u001b[39m\u001b[0m\n    at Object._raise (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.parseStatementContent (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:11769:18)\n    at Object.parseStatement (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:11676:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:12258:25)\n    at Object.parseBlockBody (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:12249:10)\n    at Object.parseBlock (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:12233:10)\n    at Object.parseStatementContent (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:11752:21)\n    at Object.parseStatement (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:11676:17)\n    at Object.parseIfStatement (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:12030:28)\n    at Object.parseStatementContent (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:11721:21)\n    at Object.parseStatement (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:11676:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:12258:25)\n    at Object.parseBlockBody (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:12249:10)\n    at Object.parseTopLevel (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:11607:10)\n    at Object.parse (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:13415:10)\n    at parse (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/parser/lib/index.js:13468:38)\n    at parser (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/core/lib/parser/index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/core/lib/transformation/normalize-file.js:99:38)\n    at normalizeFile.next (<anonymous>)\n    at run (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/core/lib/transformation/index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (/Users/haishamsaeed/Documents/weather_app/client/node_modules/@babel/core/lib/transform.js:27:41)\n    at transform.next (<anonymous>)\n    at step (/Users/haishamsaeed/Documents/weather_app/client/node_modules/gensync/index.js:261:32)\n    at gen.next (/Users/haishamsaeed/Documents/weather_app/client/node_modules/gensync/index.js:273:13)\n    at async.call.value (/Users/haishamsaeed/Documents/weather_app/client/node_modules/gensync/index.js:223:11)");
 
 /***/ }),
 
