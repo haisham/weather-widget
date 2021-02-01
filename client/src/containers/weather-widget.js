@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchWeatherRequest } from '../actions/actions';
-import { createBrowserHistory } from 'history';
+import { createMemoryHistory } from 'history';
 import * as qs from 'query-string';
 
-export const history = createBrowserHistory();
+export const history = createMemoryHistory();
 
 class WeatherWidget extends Component {
 
