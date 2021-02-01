@@ -42,18 +42,18 @@ export function fetchWeatherRequest(city) {
 			},
 			body: JSON.stringify({ 'city': city, 'units': 'metric' })
 		})
-			.then(response => response.json())
-			.then(json => {
-				if (json.data.cod === "200") {
-					dispatch(weatherSuccess(json))
-				} else {
-					dispatch(requestWeatherFailed(json.data.message));
-				}
-			})
-			.catch(error => {
-				console.log(error);
-				dispatch(requestWeatherFailed(error.toString()))
-			});
+		.then(response => response.json())
+		.then(json => {
+			if (json.data.cod === "200") {
+				dispatch(weatherSuccess(json))
+			} else {
+				dispatch(requestWeatherFailed(json.data.message));
+			}
+		})
+		.catch(error => {
+			console.log(error);
+			dispatch(requestWeatherFailed(error.toString()))
+		});
 	};
 }
 
